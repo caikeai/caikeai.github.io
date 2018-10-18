@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[记百大东合水卡破解]]></title>
+    <url>%2F2018%2F10%2F02%2F%E8%AE%B0%E7%99%BE%E5%A4%A7%E4%B8%9C%E5%90%88%E6%B0%B4%E5%8D%A1%E7%A0%B4%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[步骤：1. 通过多次刷取，使卡内金额发生改变，从而对比发现数据所在扇区 2. 现在把数据块拿出来单独分析 3.计算我们以第一条数据为例 金额位（i1、i2） 金额：68.35将其转换为十六进制就是 1AB3 接着看一下数据（惊喜有没有） 倒过来就是 B31A 与 i1、i2 相同这样我们的金额位就简单得到了，下面折腾校验位 校验位（checksum） 按位取反（事实证明这次破解中没有用到） B31A 二进制=&gt;1011001100011010 取反=&gt;0100110011100101 =&gt;4CE5 （ps:刚开始我的思路就是以上的按照金额来按位取反，实验证明没P用，过于沙雕，不过鉴于有的卡还是会用到这样的方法，写了就不删了吧） 下面换个思路我们将金额位和校验位分别转换成十进制金额位：B3 转换为十进制：1791A 转换为十进制：26 校验位：FC 转换为十进制：252 再将两个金额位的十进制数求和179 + 26 = 205 这里先说明一下思路：金额前后两位分别转十进制， 求和，与校验位十进制 差或者和为一个定值，基本上大多数水卡都是这个校验算法。我这里试验过了是以差作为一个定值，所以我就直接计算了：252 - 205 = 47再把结果转成十六进制：2F，这就是我这张卡的定值了。 现在我们就可以算校验位了,将金额位的和再与定值相加：B3 + 1A = CDCD + 2F = FC 以上 FC 即是计算出来的校验位，我们来和数据中的对比一下 方法到此结束，我们来看一看成果： end]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2016%2F10%2F02%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
