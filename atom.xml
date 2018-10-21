@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-10-21T06:02:48.010Z</updated>
+  <updated>2018-10-21T08:29:10.259Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2018/10/02/%E8%AE%B0%E7%99%BE%E5%A4%A7%E4%B8%9C%E5%90%88%E6%B0%B4%E5%8D%A1%E7%A0%B4%E8%A7%A3/"/>
     <id>http://yoursite.com/2018/10/02/记百大东合水卡破解/</id>
     <published>2018-10-02T07:11:15.000Z</published>
-    <updated>2018-10-21T06:02:48.010Z</updated>
+    <updated>2018-10-21T08:29:10.259Z</updated>
     
     <content type="html"><![CDATA[<p><img src="https://i.loli.net/2018/10/02/5bb2d9aaa7d37.png" alt="image"><br><a id="more"></a>  </p><h2 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h2><h4 id="1-通过多次刷取，使卡内金额发生改变，从而对比发现数据所在扇区"><a href="#1-通过多次刷取，使卡内金额发生改变，从而对比发现数据所在扇区" class="headerlink" title="1. 通过多次刷取，使卡内金额发生改变，从而对比发现数据所在扇区"></a>1. 通过多次刷取，使卡内金额发生改变，从而对比发现数据所在扇区</h4><h4 id="2-现在把数据块拿出来单独分析"><a href="#2-现在把数据块拿出来单独分析" class="headerlink" title="2. 现在把数据块拿出来单独分析"></a>2. 现在把数据块拿出来单独分析</h4><p><img src="https://i.loli.net/2018/10/02/5bb2daa614d84.png" alt="image">  </p><h4 id="3-计算"><a href="#3-计算" class="headerlink" title="3.计算"></a>3.计算</h4><h5 id="我们以第一条数据为例"><a href="#我们以第一条数据为例" class="headerlink" title="我们以第一条数据为例"></a>我们以第一条数据为例</h5><blockquote><p><strong>金额位</strong>（i1、i2）  </p><blockquote><p>金额：<strong>68.35</strong><br>将其转换为十六进制就是 <strong><code>1AB3</code></strong> 接着看一下数据（惊喜有没有）</p><p><img src="https://i.loli.net/2018/10/02/5bb2dc4004586.png" alt="image"><br>倒过来就是 <strong><code>B31A</code></strong> 与 i1、i2 相同<br>这样我们的金额位就简单得到了，下面折腾校验位</p></blockquote></blockquote><blockquote><p><strong>校验位</strong>（checksum）  </p><blockquote><p> 按位取反（事实证明这次破解中没有用到）</p><pre><code>B31A 二进制=&gt;1011001100011010       取反=&gt;0100110011100101           =&gt;4CE5（ps:刚开始我的思路就是以上的按照金额来按位取反，实验证明没P用，过于沙雕，不过鉴于有的卡还是会用到这样的方法，写了就不删了吧）</code></pre><p><strong>下面换个思路</strong><br>我们将金额位和校验位分别转换成十进制<br>金额位：<br><code>B3</code> 转换为十进制：179<br><code>1A</code> 转换为十进制：26  </p><p>校验位：<br><code>FC</code> 转换为十进制：252  </p><p>再将两个金额位的十进制数求和<br>179 + 26 = 205  </p><p>这里先说明一下思路：金额前后两位分别转十进制， 求和，与校验位十进制 差或者和为一个<code>定值</code>，基本上大多数水卡都是这个校验算法。<br>我这里试验过了是以差作为一个定值，所以我就直接计算了：<br>252 - 205 = 47<br>再把结果转成十六进制：<strong><code>2F</code></strong>，这就是我这张卡的<code>定值</code>了。 </p><p>现在我们就可以算校验位了,将金额位的和再与定值相加：<br>B3 + 1A = CD<br>CD + 2F = FC  </p><p>以上 <code>FC</code> 即是计算出来的校验位，我们来和数据中的对比一下 </p><p><img src="https://i.loli.net/2018/10/02/5bb2e8590ce5f.png" alt="image">  </p><p>方法到此结束，我们来看一看成果：<br><img src="https://i.loli.net/2018/10/02/5bb2e92397ebf.jpg" alt="image"><br>(注：本篇文章属于兴趣学习)  </p></blockquote></blockquote><h3 id="end"><a href="#end" class="headerlink" title="end"></a>end</h3>]]></content>
     
