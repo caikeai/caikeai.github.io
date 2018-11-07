@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/tags/index.html</loc>
+    
+    <lastmod>2018-11-07T07:41:05.741Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2018-11-07T07:40:21.369Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/categories/index.html</loc>
+    
+    <lastmod>2018-11-07T07:38:23.303Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/10/02/%E8%AE%B0%E7%99%BE%E5%A4%A7%E4%B8%9C%E5%90%88%E6%B0%B4%E5%8D%A1%E7%A0%B4%E8%A7%A3/</loc>
     
     <lastmod>2018-10-21T08:29:10.259Z</lastmod>
@@ -12,13 +33,6 @@
     <loc>http://yoursite.com/2016/10/02/hello-world/</loc>
     
     <lastmod>2018-10-17T07:12:24.564Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/about/index.html</loc>
-    
-    <lastmod>2018-10-16T17:10:27.411Z</lastmod>
     
   </url>
   
