@@ -372,14 +372,17 @@
 <li>控制面板-&gt;程序和功能-&gt;启用或关闭Windows功能-&gt;勾选 适用于Linux的Windows子系统<br><img src="https://i.loli.net/2018/11/18/5bf1314da1885.png" alt="image"></li>
 <li>重启电脑  </li>
 <li>打开应用商城搜索“WSL”，可根据自己需求选择安装一个或多个Linux系统：<img src="https://i.loli.net/2018/11/18/5bf13262c2092.png" alt="image">  </li>
-<li>安装完成后可在开始菜单里找到快捷方式并启动，第一次运行需要等待安装并设置用户名、密码。<br><img src="https://i.loli.net/2018/11/18/5bf1333421105.png" alt="image"><br>除此以外，在cmd中使用以下几个命令都可以运行WSL：<br><code>wsl 或者 bash</code><br><code>wsl [command]或者bash -c [command]</code><br>Linux系统名称（如：ubuntu），这跟上面在开始菜单里启动是一样的<br>其中，前两种方式会运行默认的linux系统，当你安装多个linux系统之后可以使用wslconfig来指定<h3 id="使用wslconfig命令进行管理"><a href="#使用wslconfig命令进行管理" class="headerlink" title="使用wslconfig命令进行管理"></a>使用wslconfig命令进行管理</h3></li>
+<li>安装完成后可在开始菜单里找到快捷方式并启动，第一次运行需要等待安装并设置用户名、密码。<br><img src="https://i.loli.net/2018/11/18/5bf1333421105.png" alt="image"><br>除此以外，在cmd中使用以下几个命令都可以运行WSL：<br><code>wsl 或者 bash</code><br><code>wsl [command]或者bash -c [command]</code><br>Linux系统名称（如：ubuntu），这跟上面在开始菜单里启动是一样的
+其中，前两种方式会运行默认的linux系统，当你安装多个linux系统之后可以使用wslconfig来指定<h3 id="使用wslconfig命令进行管理"><a href="#使用wslconfig命令进行管理" class="headerlink" title="使用wslconfig命令进行管理"></a>使用wslconfig命令进行管理</h3></li>
 <li>设置默认运行的linux系统<br><code>wslconfig /setdefault &lt;DistributionName&gt;</code><br>正如上面所说，如果执行<code>wslconfig /setdefault ubuntu</code>，那么执行bash命令则会运行ubuntu</li>
 <li>卸载linux系统<br><code>wslconfig /unregister &lt;DistributionName&gt;</code><br>当系统出现问题，我们可以卸载后重新安装。如：<code>wslconfig /unregeister ubuntu</code></li>
 <li>查看已安装的linux系统<br><code>wslconfig /list</code>  <h3 id="使用wslconfig命令进行管理-1"><a href="#使用wslconfig命令进行管理-1" class="headerlink" title="使用wslconfig命令进行管理"></a>使用wslconfig命令进行管理</h3>当我们运行WSL时，它会用第一次运行时输入的用户名登陆，如果想改为其他用户，可以（以ubuntu为例）：  <pre><code>ubuntu config --default-user root  
 这样，以后再运行ubuntu它就会默认以root登陆。此外还可以“ubuntu /?”查看其更多使用方法。
 </code></pre><h3 id="WSL文件系统与本地文件系统互相访问"><a href="#WSL文件系统与本地文件系统互相访问" class="headerlink" title="WSL文件系统与本地文件系统互相访问"></a>WSL文件系统与本地文件系统互相访问</h3></li>
-<li>WSL中访问本地文件<br>在“/mnt”目录下有“c”、“d”、“e”等文件夹，分别表示本地的C盘、D盘、E盘，直接cd到相应路径下即可。  </li>
-<li>本地访问WSL的根目录<br>微软强烈不建议在外部对WSL文件系统进行更改，所以未公开WSL所在的根目录。毕竟有时候我们需要直接读取里面的很多文件（比如说在某个IDE里面设置include path为WSL的/usr/include），如果每次都在WSL里cp命令将其拷贝到本地又太麻烦。下面是其根目录（以ubuntu为例，版本不同可能会有略微差别）：<br><img src="https://i.loli.net/2018/11/18/5bf152e163903.png" alt="image"><br><code>(C:\Users\XXXX\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs)</code>  </li>
+<li>WSL中访问本地文件
+在“/mnt”目录下有“c”、“d”、“e”等文件夹，分别表示本地的C盘、D盘、E盘，直接cd到相应路径下即可。  </li>
+<li>本地访问WSL的根目录
+微软强烈不建议在外部对WSL文件系统进行更改，所以未公开WSL所在的根目录。毕竟有时候我们需要直接读取里面的很多文件（比如说在某个IDE里面设置include path为WSL的/usr/include），如果每次都在WSL里cp命令将其拷贝到本地又太麻烦。下面是其根目录（以ubuntu为例，版本不同可能会有略微差别）：<br><img src="https://i.loli.net/2018/11/18/5bf152e163903.png" alt="image"><br><code>(C:\Users\XXXX\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs)</code>  </li>
 </ol>
 <p><img src="https://i.loli.net/2018/11/18/5bf15888cda6c.png" alt="image">  </p>
 <h4 id="到此为止你就可以在-Windows-使用-Linux-啦，也不用装双系统，麻烦的双系统切换，也不用担心虚拟机的性能损耗好了接下来就和正常玩shell一样了，尽情的享受运行WSL吧（对了，我图里用的是-cmder）"><a href="#到此为止你就可以在-Windows-使用-Linux-啦，也不用装双系统，麻烦的双系统切换，也不用担心虚拟机的性能损耗好了接下来就和正常玩shell一样了，尽情的享受运行WSL吧（对了，我图里用的是-cmder）" class="headerlink" title="到此为止你就可以在 Windows 使用 Linux 啦，也不用装双系统，麻烦的双系统切换，也不用担心虚拟机的性能损耗好了接下来就和正常玩shell一样了，尽情的享受运行WSL吧（对了，我图里用的是 cmder）"></a>到此为止你就可以在 Windows 使用 Linux 啦，也不用装双系统，麻烦的双系统切换，也不用担心虚拟机的性能损耗好了接下来就和正常玩shell一样了，尽情的享受运行WSL吧（对了，我图里用的是 cmder）</h4>
@@ -425,6 +428,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/03/Vim-快捷键-《鸟叔的-Linux-私房菜》/" rel="prev" title="Vim 快捷键 - 《鸟叔的 Linux 私房菜》">
+                Vim 快捷键 - 《鸟叔的 Linux 私房菜》 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -505,7 +512,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
