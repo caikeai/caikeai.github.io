@@ -327,7 +327,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-08-11T19:02:57+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-08-11T19:07:49+08:00">
                 2019-08-11
               </time>
             
@@ -362,196 +362,14 @@
 
       
         
-          
-            <a id="more"></a>  
-<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><p>[TOC]</p>
-<details>
-<summary>常见术语解释</summary>
-<table>
-<thead>
-<tr>
-<th>术语</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>origin</td>
-<td>默认远端仓库</td>
-</tr>
-<tr>
-<td>master</td>
-<td>默认开发分支</td>
-</tr>
-<tr>
-<td>HEAD</td>
-<td>默认开发分支</td>
-</tr>
-<tr>
-<td>HEAD^</td>
-<td><code>HEAD</code>父提交</td>
-</tr>
-<tr>
-<td>tracked</td>
-<td><code>git</code>已经追踪文件的修改</td>
-</tr>
-<tr>
-<td>untracked</td>
-<td>未跟踪的状态，也就是<code>git</code>不认识的新的文件</td>
-</tr>
-<tr>
-<td>revert</td>
-<td>回退</td>
-</tr>
-</tbody>
-</table>
-</details>
-
-<h2 id="提交流程"><a href="#提交流程" class="headerlink" title="提交流程"></a>提交流程</h2><p>日常提交
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 跟踪改动过的文件</span><br><span class="line"># `git add &lt;file&gt;` or</span><br><span class="line"># `git add -A` or</span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line"># 添加 commit 信息</span><br><span class="line"># 不同团队有不同的编写 commit 信息规范，有的项目依赖 commit 的格式来做自动化处理</span><br><span class="line"># 常见格式如： `&lt;action&gt; &lt;desc content&gt;`</span><br><span class="line">git commit -m &quot;fix: message commit&quot;</span><br><span class="line"></span><br><span class="line"># 从远程仓库拉取代码，查看是否有冲突</span><br><span class="line"># 直接 git pull 可能会有冲突，可采用 rebase 代替默认的 merge 策略减少多余的 commit 提交</span><br><span class="line">git pull --rebase</span><br><span class="line"></span><br><span class="line"># 提交改动至默认的远程仓库</span><br><span class="line">git push</span><br><span class="line"></span><br><span class="line"># or 同时提交改动至指定远程仓库(orgin)和分支(develop, master)</span><br><span class="line">git push origin master develop</span><br></pre></td></tr></table></figure></p>
-<h2 id="Add"><a href="#Add" class="headerlink" title="Add"></a>Add</h2><table>
-<thead>
-<tr>
-<th style="text-align:left">方法</th>
-<th style="text-align:left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">git add <code>change file</code></td>
-<td style="text-align:left">git add <code>change file</code> 将其添加到 status</td>
-</tr>
-<tr>
-<td style="text-align:left">git add [–all /.]</td>
-<td style="text-align:left">添加全部改动文件</td>
-</tr>
-</tbody>
-</table>
-<h2 id="Commit"><a href="#Commit" class="headerlink" title="Commit"></a>Commit</h2><table>
-<thead>
-<tr>
-<th style="text-align:left">方法</th>
-<th style="text-align:left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">git commit-m <code>&lt;message&gt;</code></td>
-<td style="text-align:left">为已经进入 <code>status(暂存更改)</code> 添加 <code>commit</code> 信息</td>
-</tr>
-<tr>
-<td style="text-align:left">git commit –amend</td>
-<td style="text-align:left">修改上一次提交的 <code>commit</code> 信息</td>
-</tr>
-</tbody>
-</table>
-<h3 id="撤销还没-push-到远程的-commit"><a href="#撤销还没-push-到远程的-commit" class="headerlink" title="撤销还没 push 到远程的 commit"></a>撤销还没 push 到远程的 commit</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 找到需要撤销的 commit 的`前一个` commit_hash(这步可以理解为找到定位的节点</span><br><span class="line"># bash 的 commit 顺序是从上(最新 commit)至下的顺序</span><br><span class="line">git log --online</span><br><span class="line"></span><br><span class="line"># 撤销 commit, 将代码恢复为前一个版本(会丢失修改)</span><br><span class="line">git reset --hard commit_hash</span><br><span class="line"></span><br><span class="line"># or 完成 commit 撤销，但不对代码进行撤销修改，可以重新提交 commit</span><br><span class="line">git reset commit_hash</span><br><span class="line"></span><br><span class="line"># 如果只 commit 了一次，想给回退到 commit 前上一个版本的话，还可以用`HEAD`代替`hash`</span><br><span class="line"># HEAD    就是本次的版本</span><br><span class="line"># HEAD~1  就是上一次的版本</span><br><span class="line">git reset HEAD~1</span><br></pre></td></tr></table></figure>
-<h3 id="撤销已经-push-到远程的-commit"><a href="#撤销已经-push-到远程的-commit" class="headerlink" title="撤销已经 push 到远程的 commit"></a>撤销已经 push 到远程的 commit</h3><p>在使用 <code>git</code> 时，有时候我们会无意间错推了我们不想推上去的文件或者希望能够回退以前版本的时候. 这时我们可以先在本地回退到相应的版本。
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 注意使用 --hard 参数会抛弃当前工作区的修改</span><br><span class="line"># 使用 --soft 参数的话会回退到之前的版本，但是保留当前工作区的修改，可以重新提交</span><br><span class="line">$ git reset --hard &lt;版本号&gt;</span><br></pre></td></tr></table></figure></p>
-<p>为了覆盖掉远端的版本信息，使远端的仓库也回退到相应的版本，需要加上参数 <code>--force</code>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># branch: 分支</span><br><span class="line">$ git push origin &lt;branch&gt; --force</span><br></pre></td></tr></table></figure></p>
-<h2 id="branch-and-tag"><a href="#branch-and-tag" class="headerlink" title="branch and tag"></a>branch and tag</h2><p>常用的分支和标签命令
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># 查看分支</span><br><span class="line">git branch</span><br><span class="line"></span><br><span class="line"># git checkout &lt;branch/tag&gt; 切换指定的分支或标签</span><br><span class="line">git checkout develop</span><br><span class="line"></span><br><span class="line"># 切换名为 gh-pages 的分支, 如果不存在这个分支就创建它</span><br><span class="line">git checkout -b &quot;gh-pages&quot;</span><br><span class="line"></span><br><span class="line"># 查看所有标签</span><br><span class="line">git tag</span><br><span class="line"></span><br><span class="line"># 基于最新提交的分支创建标签</span><br><span class="line">git tag &lt;tagname&gt;</span><br><span class="line"></span><br><span class="line"># 删除指定标签</span><br><span class="line">git tag -d &lt;tagname&gt;</span><br><span class="line"></span><br><span class="line"># 使当前的分支和远程仓库 `origin2/game` 建立关联（前提是目标分支要存在）</span><br><span class="line"># 建立关联后就可以直接使用 `git push` 命令而无需添加其他参数。</span><br><span class="line">git branch --set-upstream-to orgin2/game</span><br></pre></td></tr></table></figure></p>
-<h2 id="history"><a href="#history" class="headerlink" title="history"></a>history</h2><p>查看 <code>git</code> 历史
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 查看提交历史</span><br><span class="line">git log</span><br><span class="line"></span><br><span class="line"># 使用更简洁的模式查看提交历史</span><br><span class="line">git log --oneline</span><br><span class="line"></span><br><span class="line"># 查看指定文件的提交历史</span><br><span class="line">git log -p &lt;file&gt;</span><br><span class="line"></span><br><span class="line"># 以列表的方式查看指定文件的提交历史</span><br><span class="line">git blame &lt;file&gt;</span><br></pre></td></tr></table></figure></p>
-<h2 id="remote"><a href="#remote" class="headerlink" title="remote"></a>remote</h2><p>添加一个远程仓库
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add orgin `&lt;remote&gt;`</span><br></pre></td></tr></table></figure></p>
-<p>将本地分支推送到存在依赖关系的远端分支，如果远端没有 <code>master</code> 分支，那会新建一个
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure></p>
-<p>推送当前分支并建立与远程上游的跟踪
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push --set-upstream origin master</span><br></pre></td></tr></table></figure></p>
-<p>设置上游并推送至远程的 <code>master</code> 分支
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br><span class="line"></span><br><span class="line"># or</span><br><span class="line">git push origin master</span><br><span class="line">git branch --set-upstream-to orgin/master</span><br></pre></td></tr></table></figure></p>
-<h2 id="Guide"><a href="#Guide" class="headerlink" title="Guide"></a>Guide</h2><h3 id="解决-git-目录过大的问题"><a href="#解决-git-目录过大的问题" class="headerlink" title="解决 .git 目录过大的问题"></a>解决 .git 目录过大的问题</h3><blockquote>
-<p><a href="https://www.zhihu.com/question/29769130/answer/315745139" target="_blank" rel="noopener">如何解决 GitHub 提交次数过多 .git 文件过大的问题？ - 作者：郑宇</a></p>
-</blockquote>
-<p>项目中上传了一些很大的文件(文件过大在 <code>git cached</code> 中占用了很大空间，可能是几百M)，经过了一段时间后又将这些文件移除，并且确定不在使用后，可以使用下面命令在树中移除它:  </p>
-<ol>
-<li><p>运行 gc ，生成 pack 文件（后面的 –prune=now 表示对之前的所有提交做修剪，有的时候仅仅 gc 一下.git 文件就会小很多）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git gc --prune=now</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>找出最大的三个文件（看自己需要）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -3</span><br><span class="line"># 示例输出：</span><br><span class="line">#1debc758cf31a649c2fc5b0c59ea1b7f01416636 blob   4925660 3655422 14351</span><br><span class="line">#c43a8da9476f97e84b52e0b34034f8c2d93b4d90 blob   154188651 152549294 12546842</span><br><span class="line">#2272096493d061489349e0a312df00dcd0ec19a2 blob   155414465 153754005 1650961363</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看那些大文件究竟是谁（c43a8da 是上面大文件的 hash 码）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git rev-list --objects --all | grep c43a8da</span><br><span class="line"># c43a8da9476f97e84b52e0b34034f8c2d93b4d90 data/bigfile</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用 <code>git filter-branch</code> 移除对文件的引用重写分支。因为我想删除的是一个目录(<code>Books</code>)，因此需要加上递归(<code>-r</code>)来移除 <code>Book</code> 文件夹下的文件.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git filter-branch --index-filter  &apos;git rm -r --cached --ignore-unmatch Books&apos; --prune-empty --tag-name-filter cat --force -- --all</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>进行 <code>repack</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git for-each-ref --format=&apos;delete %(refname)&apos; refs/original | git update-ref --stdin</span><br><span class="line">git reflog expire --expire=now --all</span><br><span class="line">git gc --prune=now</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看 pack 的空间使用情况</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git count-objects -v</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="初始化远程仓库"><a href="#初始化远程仓库" class="headerlink" title="初始化远程仓库"></a>初始化远程仓库</h3><p>假设你已经在远程储存库上创建了新的库(<code>test</code>)，此时需要将本地项目的代码关联并推送到远程仓库上去:
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">cd test</span><br><span class="line"></span><br><span class="line"># 初始化 git</span><br><span class="line">git init</span><br><span class="line"></span><br><span class="line"># 添加全部改动</span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line"># 添加 commit 信息</span><br><span class="line">git commit -m &quot;init message&quot;</span><br><span class="line"></span><br><span class="line"># 添加远程地址，提交代码至远程，并设置为追踪分支</span><br><span class="line">git remote add origin git@github.com:anran758/test.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure></p>
-<h3 id="清空项目的-commit-记录"><a href="#清空项目的-commit-记录" class="headerlink" title="清空项目的 commit 记录"></a>清空项目的 commit 记录</h3><p>当一个项目已经存在久远，或者说 commit 记录有很多历史遗留的问题，分支线跟地铁图似得。此时你想重置 git 线时，可以这样做:
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 先从远端克隆一份仓库，不要在原先本地项目直接进行操作</span><br><span class="line">git clone git@github.com:anran758/test.git</span><br><span class="line">cd test</span><br><span class="line"></span><br><span class="line"># 创建一个临时分支</span><br><span class="line">git checkout --orphan tmp</span><br><span class="line"></span><br><span class="line"># 在新的分支中添加全部文件进去，并提交 commit</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;commit message&quot;</span><br><span class="line"></span><br><span class="line"># 删除分支</span><br><span class="line">git branch -D master</span><br><span class="line"></span><br><span class="line"># 此时所处于的分支在 tmp 分支， 将 tmp 更名为 master</span><br><span class="line">git branch -m master</span><br><span class="line"></span><br><span class="line"># 强制推入远程仓库即可</span><br><span class="line">git push -f origin master</span><br></pre></td></tr></table></figure></p>
-<h3 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 只删除所有`untracked`的文件</span><br><span class="line"># 如果文件已经被`tracked`, 修改过的文件不会被回退</span><br><span class="line">git clean -df</span><br><span class="line"></span><br><span class="line"># 把`tracked`的文件回退到前一个版本</span><br><span class="line"># 对于`untracked`的文件(比如编译的临时文件)都不会被删除</span><br><span class="line">git reset --hard</span><br><span class="line"></span><br><span class="line"># 撤销指定未提交的修改内容</span><br><span class="line">git checkout HEAD &lt;file&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="文件夹大小写切换"><a href="#文件夹大小写切换" class="headerlink" title="文件夹大小写切换"></a>文件夹大小写切换</h3><p>如果你提交了一个文件夹名为<code>FOO</code>，然后你现在想修改为小写的<code>foo</code>时，你会发现直接修改文件名<code>git</code>是不识别的。因为在默认情况下，<code>git</code>是不区分文件名大小写。</p>
-<p>这时有两个解决方法：</p>
-<p><strong>(不推荐)</strong> 直接设置 <code>git config</code> 区分大小写，但弊端在不同平台下可能会引起别的问题。
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 配置仓库的大小写敏感</span><br><span class="line">$ git config core.ignorecase false</span><br></pre></td></tr></table></figure></p>
-<p><strong>(推荐)</strong> 通过 <code>git mv</code> 方法来改名。
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 回避系统对大小写的判定，先修改为其他的名字, git 会将修改自动添加到工作区上</span><br><span class="line">$ git mv FOO FOO1</span><br><span class="line"></span><br><span class="line"># 再将名字修改回小写的状态，修改后的操作会自动添加到工作区上, 这样就完成了名字的修改</span><br><span class="line">$ git mv FOO1 foo</span><br><span class="line"></span><br><span class="line"># 提交修改</span><br><span class="line">$ git commit -m &quot;Modify dir name&quot;</span><br></pre></td></tr></table></figure></p>
-<h3 id="保留空的文件夹"><a href="#保留空的文件夹" class="headerlink" title="保留空的文件夹"></a>保留空的文件夹</h3><p>在默认情况下，<code>git</code> 会忽略掉空的文件夹。如果想要保留这个文件夹的话，可以在里面创建一个名为 <code>.gitkeep</code> 的空文件(名字是社区约定形成，也可以使用其他名字，原理上只是占个坑).</p>
-<p>不过<code>windows</code>平台下不能直接右键创建<code>.</code>开头的文件，系统会认为文件名不合法。这时需要使用命令行或者编辑器来完成创建。</p>
-<h2 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h2><p>在执行 <code>git pull origin master</code> 命令时，无法 <code>pull</code> 的情况。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git pull</span><br><span class="line">$ fatal: refusing to merge unrelated histories</span><br><span class="line"># 原因是说在 git 2.9版本后，需要加上这句 --allow-unrelated-histories。</span><br><span class="line">git pull origin master --allow-unrelated-histories</span><br></pre></td></tr></table></figure>
-<hr>
-<p>使用 <code>git pull</code> 遇到合并 <code>commit</code> 时，此时并不想因为合并代码多产生一条 <code>commit</code> 记录，可以将 <code>commit</code> 信息注释掉，<code>shift + :wq</code> 退出。</p>
-<p>然后会因为自动合并失败后提示错误:
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Auto-merging pages/index/index.js</span><br><span class="line">error: Empty commit message.</span><br><span class="line">Not committing merge; use &apos;git commit&apos; to complete the merge.</span><br></pre></td></tr></table></figure></p>
-<p>撤消合并并再次拉动，使用 <code>rebase</code> 解决冲突：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git merge --abort</span><br><span class="line">$ git pull --rebase</span><br><span class="line">First, rewinding head to replay your work on top of it...</span><br><span class="line">Applying: fix: fixed something</span><br><span class="line">$ git push</span><br></pre></td></tr></table></figure></p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>在<code>vim</code>编辑器中，同时按住<code>shift + &lt;命令&gt;</code>即可操作对应的命令. 但按<code>a</code>进入插入模式。</p>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>:q</td>
-<td>不保存文件，退出 <code>vi(m)</code></td>
-</tr>
-<tr>
-<td>:q!</td>
-<td>不保存文件，强制退出 <code>vi(m)</code></td>
-</tr>
-<tr>
-<td>:w</td>
-<td>保存文件但不退出 <code>vi(m)</code></td>
-</tr>
-<tr>
-<td>:w file</td>
-<td>将修改另外保存到 <code>file</code> 中，不退出 <code>vi(m)</code></td>
-</tr>
-<tr>
-<td>:w!</td>
-<td>强制保存，不推出 <code>vi(m)</code></td>
-</tr>
-<tr>
-<td>:wq</td>
-<td>保存文件并退出 <code>vi(m)</code></td>
-</tr>
-<tr>
-<td>:wq!</td>
-<td>强制保存文件，并退出 <code>vi(m)</code></td>
-</tr>
-<tr>
-<td>:e!</td>
-<td>放弃所有修改，从上次保存文件开始再编辑命令历史</td>
-</tr>
-</tbody>
-</table>
-
-          
+          <p><img src="http://images0.cnblogs.com/blog/697158/201505/071305064859837.png" alt="Git">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/08/11/Git/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
